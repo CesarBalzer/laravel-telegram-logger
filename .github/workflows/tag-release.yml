@@ -8,6 +8,7 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
         with:
@@ -21,7 +22,12 @@ jobs:
       - name: Calculate new version
         id: version
         run: |
-          CURRENT_VERSION=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          # Obtém a última tag pela data de criação (não pelo commit base)
+          CURRENT_VERSION=$(git tag --sort=-creatordate | head -n 1)
+          if [ -z "$CURRENT_VERSION" ]; then
+            CURRENT_VERSION="v1.0.0"
+          fi
+          
           echo "Última versão: $CURRENT_VERSION"
 
           MAJOR=$(echo $CURRENT_VERSION | cut -d. -f1 | tr -d 'v')
@@ -56,6 +62,5 @@ jobs:
             - Exemplo de uso com rota de erro
             - Configuração `.env` documentada
             - Suporte a instalação via Composer + Packagist
-
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
