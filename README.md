@@ -55,16 +55,14 @@ Se estiver desenvolvendo localmente com um repositório path:
 ],
 ```
 
-### 2. Publique a configuração:
+### 2. Adicione a configuração no seu logging.php:
 
-```bash
-php artisan vendor:publish --tag=telegram-logger-config
-```
-
-Isso criará o arquivo:
-
-```
-config/telegram-logger.php
+```php
+'telegram' => [
+    'driver' => 'custom',
+    'via' => TelegramLogger::class,
+    'level' => env('LOG_TELEGRAM_LEVEL', 'error'),
+],
 ```
 
 ### 3. Configure seu `.env`:
