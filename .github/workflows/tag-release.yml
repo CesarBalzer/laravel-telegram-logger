@@ -42,7 +42,7 @@ jobs:
           git fetch --tags
 
           if git ls-remote --tags origin | grep -q "refs/tags/$TAG$"; then
-            echo "⚠️  Tag $TAG já existe remotamente. Pulando criação."
+            echo "⚠️  Tag $TAG já existe remotamente."
           else
             git tag "$TAG"
             git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}
