@@ -22,7 +22,7 @@ class TelegramLoggerServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            realpath(__DIR__ . '/../config/telegram-logger.php'),
+            __DIR__ . '/../config/telegram-logger.php',
             'telegram-logger'
         );
     }
