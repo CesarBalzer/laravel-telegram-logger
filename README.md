@@ -14,10 +14,10 @@ Este pacote permite que aplicações Laravel enviem **logs críticos (error, eme
 
 ## ✅ Recursos
 
--   Envio automático de erros via `Log::error()`, `Log::emergency()`, etc.
--   Suporte a `.env` para configuração rápida.
--   Ignora mensagens irrelevantes como 404 de scans.
--   Integrado com o sistema de logging nativo do Laravel.
+- Envio automático de erros via `Log::error()`, `Log::emergency()`, etc.
+- Suporte a `.env` para configuração rápida.
+- Ignora mensagens irrelevantes como 404 de scans.
+- Integrado com o sistema de logging nativo do Laravel.
 
 ---
 
@@ -43,7 +43,7 @@ Se estiver desenvolvendo localmente com um repositório path:
 
 ## ⚙️ Configuração
 
-### Adicione no `config/logging.php`:
+### 1. Adicione no `config/logging.php`:
 
 ```php
 'channels' => [
@@ -55,13 +55,24 @@ Se estiver desenvolvendo localmente com um repositório path:
 ],
 ```
 
-### Configure seu `.env`:
+### 2. Adicione a configuração no seu config/services.php:
+
+```php
+'telegram' => [
+    'bot_token' => env('TELEGRAM_BOT_TOKEN'),
+    'chat_id' => env('TELEGRAM_CHAT_ID'),
+    'level' => env('LOG_TELEGRAM_LEVEL'),
+],
+```
+
+### 3. Configure seu `.env`:
 
 ```env
 TELEGRAM_LOGGER_BOT_TOKEN=seu_token_aqui
 TELEGRAM_LOGGER_CHAT_ID=-1001234567890
 LOG_TELEGRAM_LEVEL=error
 ```
+---
 
 > ⚠️ O `chat_id` de grupos começa com `-100` seguido dos dígitos do ID.
 
