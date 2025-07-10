@@ -9,13 +9,11 @@ class TelegramLogger
 {
     public function __invoke(array $config): Logger
     {
-        $level = $config['level'] ?? 'error';
-
         $logger = new Logger('telegram');
         $logger->pushHandler(new TelegramHandler(
             config('telegram-logger.bot_token'),
             config('telegram-logger.chat_id'),
-            $level
+            config('telegram-logger.level'),
         ));
 
         return $logger;

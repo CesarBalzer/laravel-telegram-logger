@@ -55,14 +55,10 @@ Se estiver desenvolvendo localmente com um repositório path:
 ],
 ```
 
-### 2. Adicione a configuração no seu config/services.php:
+### 2. Publique a configuração:
 
-```php
-'telegram' => [
-    'bot_token' => env('TELEGRAM_BOT_TOKEN'),
-    'chat_id' => env('TELEGRAM_CHAT_ID'),
-    'level' => env('LOG_TELEGRAM_LEVEL'),
-],
+```bash
+php artisan vendor:publish --tag=telegram-logger-config
 ```
 
 ### 3. Configure seu `.env`:
@@ -70,7 +66,7 @@ Se estiver desenvolvendo localmente com um repositório path:
 ```env
 TELEGRAM_LOGGER_BOT_TOKEN=seu_token_aqui
 TELEGRAM_LOGGER_CHAT_ID=-1001234567890
-LOG_TELEGRAM_LEVEL=error
+TELEGRAM_LOG_LEVEL=error
 ```
 ---
 
