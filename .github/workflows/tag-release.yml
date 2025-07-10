@@ -8,7 +8,6 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
         with:
@@ -22,12 +21,7 @@ jobs:
       - name: Calculate new version
         id: version
         run: |
-          # Obtém a última tag pela data de criação (não pelo commit base)
-          CURRENT_VERSION=$(git tag --sort=-creatordate | head -n 1)
-          if [ -z "$CURRENT_VERSION" ]; then
-            CURRENT_VERSION="v1.0.0"
-          fi
-          
+          CURRENT_VERSION=$(git describe --tags --abbrev=0 2>/dev/null || echo "v1.0.0")
           echo "Última versão: $CURRENT_VERSION"
 
           MAJOR=$(echo $CURRENT_VERSION | cut -d. -f1 | tr -d 'v')
@@ -40,15 +34,21 @@ jobs:
 
           echo "new_tag=$NEW_VERSION" >> "$GITHUB_OUTPUT"
 
-      - name: Create Git tag
+      - name: Create Git tag if not exists
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          git tag ${{ steps.version.outputs.new_tag }}
-          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}
-          git push origin ${{ steps.version.outputs.new_tag }}
+          TAG=${{ steps.version.outputs.new_tag }}
+          if git rev-parse "$TAG" >/dev/null 2>&1; then
+            echo "⚠️  Tag $TAG já existe. Pulando criação."
+          else
+            git tag "$TAG"
+            git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}
+            git push origin "$TAG"
+          fi
 
       - name: Create GitHub Release
+        if: success()
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.version.outputs.new_tag }}
@@ -62,5 +62,6 @@ jobs:
             - Exemplo de uso com rota de erro
             - Configuração `.env` documentada
             - Suporte a instalação via Composer + Packagist
+
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
