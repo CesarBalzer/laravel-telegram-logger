@@ -6,7 +6,6 @@ use CesarBalzer\TelegramLogger\Logger\TelegramLogger;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Log\LogManager;
 
-
 class TelegramLoggerServiceProvider extends ServiceProvider
 {
     public function boot()
@@ -16,14 +15,14 @@ class TelegramLoggerServiceProvider extends ServiceProvider
         });
 
         $this->publishes([
-            __DIR__ . '/../config/telegram-logger.php' => config_path('telegram-logger.php'),
-        ], 'config');
+            __DIR__ . '/../../config/telegram-logger.php' => config_path('telegram-logger.php'),
+        ], 'telegram-logger-config');
     }
 
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/../config/telegram-logger.php',
+            __DIR__ . '/../../config/telegram-logger.php',
             'telegram-logger'
         );
     }

@@ -50,7 +50,7 @@ Se estiver desenvolvendo localmente com um repositório path:
     'telegram' => [
         'driver' => 'custom',
         'via' => CesarBalzer\TelegramLogger\Logger\TelegramLogger::class,
-        'level' => 'error',
+        'level' => env('LOG_TELEGRAM_LEVEL'),
     ],
 ],
 ```
@@ -72,6 +72,7 @@ config/telegram-logger.php
 ```env
 TELEGRAM_LOGGER_BOT_TOKEN=seu_token_aqui
 TELEGRAM_LOGGER_CHAT_ID=-1001234567890
+LOG_TELEGRAM_LEVEL=error
 ```
 
 > ⚠️ O `chat_id` de grupos começa com `-100` seguido dos dígitos do ID.
