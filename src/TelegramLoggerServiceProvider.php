@@ -15,14 +15,14 @@ class TelegramLoggerServiceProvider extends ServiceProvider
         });
 
         $this->publishes([
-            __DIR__ . '/../config/telegram-logger.php' => config_path('telegram-logger.php'),
+            __DIR__ . '/config/telegram-logger.php' => config_path('telegram-logger.php'),
         ], 'telegram-logger-config');
     }
 
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/../config/telegram-logger.php',
+            __DIR__ . '/config/telegram-logger.php',
             'telegram-logger'
         );
     }
