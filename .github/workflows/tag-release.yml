@@ -39,8 +39,10 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           TAG=${{ steps.version.outputs.new_tag }}
-          if git rev-parse "$TAG" >/dev/null 2>&1; then
-            echo "⚠️  Tag $TAG já existe. Pulando criação."
+          git fetch --tags
+
+          if git ls-remote --tags origin | grep -q "refs/tags/$TAG$"; then
+            echo "⚠️  Tag $TAG já existe remotamente. Pulando criação."
           else
             git tag "$TAG"
             git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}
