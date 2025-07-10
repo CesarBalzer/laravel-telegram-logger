@@ -1,0 +1,20 @@
+{
+  "name": "cesarbalzer/laravel-telegram-logger",
+  "description": "Canal de log customizado para enviar mensagens de erro para o Telegram",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "CesarBalzer\\TelegramLogger\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "CesarBalzer\\TelegramLogger\\TelegramLoggerServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
