@@ -1,3 +1,11 @@
+![Packagist Version](https://img.shields.io/packagist/v/cesarbalzer/laravel-telegram-logger)
+![Release Workflow](https://github.com/CesarBalzer/laravel-telegram-logger/actions/workflows/tag-release.yml/badge.svg)
+![License](https://img.shields.io/github/license/CesarBalzer/laravel-telegram-logger)
+![PHP Version](https://img.shields.io/packagist/php-v/cesarbalzer/laravel-telegram-logger)
+![Downloads](https://img.shields.io/packagist/dt/cesarbalzer/laravel-telegram-logger)
+![Last Commit](https://img.shields.io/github/last-commit/CesarBalzer/laravel-telegram-logger)
+![Issues](https://img.shields.io/github/issues/CesarBalzer/laravel-telegram-logger)
+
 # Laravel Telegram Logger
 
 Este pacote permite que aplicações Laravel enviem **logs críticos (error, emergency, etc)** diretamente para um **grupo ou canal do Telegram** usando um bot. Ideal para monitorar falhas em produção em tempo real.
