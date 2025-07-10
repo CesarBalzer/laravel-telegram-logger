@@ -43,7 +43,7 @@ Se estiver desenvolvendo localmente com um repositório path:
 
 ## ⚙️ Configuração
 
-### 1. Adicione no `config/logging.php`:
+### Adicione no `config/logging.php`:
 
 ```php
 'channels' => [
@@ -55,17 +55,7 @@ Se estiver desenvolvendo localmente com um repositório path:
 ],
 ```
 
-### 2. Adicione a configuração no seu logging.php:
-
-```php
-'telegram' => [
-    'driver' => 'custom',
-    'via' => TelegramLogger::class,
-    'level' => env('LOG_TELEGRAM_LEVEL', 'error'),
-],
-```
-
-### 3. Configure seu `.env`:
+### Configure seu `.env`:
 
 ```env
 TELEGRAM_LOGGER_BOT_TOKEN=seu_token_aqui
