@@ -64,8 +64,8 @@ php artisan vendor:publish --tag=telegram-logger-config
 ### 3. Configure seu `.env`:
 
 ```env
-TELEGRAM_LOGGER_BOT_TOKEN=seu_token_aqui
-TELEGRAM_LOGGER_CHAT_ID=-1001234567890
+TELEGRAM_BOT_TOKEN=seu_token_aqui
+TELEGRAM_CHAT_ID=-1001234567890
 TELEGRAM_LOG_LEVEL=error
 ```
 ---
